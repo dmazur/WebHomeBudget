@@ -1,9 +1,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <?php
 
+include_once ('../config.php');
 session_start();
 if (!isset($_SESSION['USER_AUTH_LOGIN'])) {
-    header('Location: /~bob/WebHomeBudget');
+    header('Location: ' . URL_PREFIX);
 }
 
 ?>
@@ -16,6 +17,7 @@ if (!isset($_SESSION['USER_AUTH_LOGIN'])) {
     <link rel="stylesheet" type="text/css" href="../Css/custom.css">
     
     <script type="text/javascript" src="../Libs/ExtJS4.1.1a/bootstrap.js"></script>
+    <script type="text/javascript" src="config.js"></script>
     <script type="text/javascript" src="utils.js"></script>
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="../Libs/ExtJS4.1.1a/locale/ext-lang-pl.js"></script>
