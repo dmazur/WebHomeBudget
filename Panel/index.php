@@ -3,7 +3,7 @@
 
 session_start();
 if (!isset($_SESSION['USER_AUTH_LOGIN'])) {
-    header('Location: /');
+    header('Location: /~dawid/webhomebudget');
 }
 
 ?>
@@ -16,7 +16,7 @@ if (!isset($_SESSION['USER_AUTH_LOGIN'])) {
     <link rel="stylesheet" type="text/css" href="../Css/custom.css">
     
     <script type="text/javascript" src="../Libs/ExtJS4.1.1a/bootstrap.js"></script>
-
+    <script type="text/javascript" src="utils.js"></script>
     <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="../Libs/ExtJS4.1.1a/locale/ext-lang-pl.js"></script>
 </head>
