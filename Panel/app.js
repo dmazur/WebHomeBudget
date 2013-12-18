@@ -1,8 +1,7 @@
 // URL prefix initialization
 // comment/delete if not required
 Ext.require('Ext.Ajax');
-// left here on purpose (as example)
-var URLPrefix = '/~dawid/webhomebudget';
+// URLprefix can be changed in config.js
 Ext.onReady( function() {       
     Ext.Ajax.on("beforerequest", function(conn, options, eOpts){
         options.url = URLPrefix + options.url;

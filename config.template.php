@@ -1,5 +1,8 @@
 <?php
 //RENAME TO config.php
+// left here on purpose (as example)
+define( 'URL_PREFIX', '/~dawid/webhomebudget' );
+
 //this path is needed for dispatcher configuration (this string will be deleted from URI)
 define( "SERVICE_PATH", "/Service" );
 define( "LIB_PATH", "/Libs" ); 
