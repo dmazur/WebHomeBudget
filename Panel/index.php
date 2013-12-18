@@ -3,7 +3,7 @@
 
 session_start();
 if (!isset($_SESSION['USER_AUTH_LOGIN'])) {
-    header('Location: /~dawid/webhomebudget');
+    header('Location: /~bob/WebHomeBudget');
 }
 
 ?>
