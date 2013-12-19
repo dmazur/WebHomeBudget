@@ -69,7 +69,7 @@ if (isset($_SESSION['USER_AUTH_LOGIN'])) {
                                     if (Ext.getCmp('login_form').getForm().isValid()) {
                                         var loginFormFields = Ext.getCmp('login_form').getValues();
                                         Ext.Ajax.request({
-                                            url: URLPrefix +'/Service/user/',
+                                            url: URLPrefix +'/Service/user',
                                             method: 'post',
                                             params: {
                                                 login: loginFormFields.login,
@@ -161,7 +161,7 @@ if (isset($_SESSION['USER_AUTH_LOGIN'])) {
                                                         }
                                                         if(form.getForm().isValid()) {
                                                             form.getForm().submit({
-                                                                url: URLPrefix + '/Service/user/',
+                                                                url: URLPrefix + '/Service/user',
                                                                 method: 'post',
                                                                 params: {
                                                                     command: 'create'
