@@ -1,5 +1,6 @@
 Libs/*
 Images/IconsSrc/*
 config.php
-/Service/.htaccess
-/Panel/config.js
+Service/.htaccess
+utils/.htaccess
+Panel/config.js

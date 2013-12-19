@@ -18,7 +18,11 @@ if (isset($_SESSION['USER_AUTH_LOGIN'])) {
 </head>
 
 <body id="login_body">
+    <script src="Panel/config.js"></script> 
     <script type="text/javascript">
+
+
+
         Ext.onReady(function() {
             Ext.create('Ext.Panel', {
                 layout: 'fit',
@@ -65,7 +69,7 @@ if (isset($_SESSION['USER_AUTH_LOGIN'])) {
                                     if (Ext.getCmp('login_form').getForm().isValid()) {
                                         var loginFormFields = Ext.getCmp('login_form').getValues();
                                         Ext.Ajax.request({
-                                            url: '/~dawid/webhomebudget/Service/user/',
+                                            url: URLPrefix +'/Service/user/',
                                             method: 'post',
                                             params: {
                                                 login: loginFormFields.login,
@@ -157,7 +161,7 @@ if (isset($_SESSION['USER_AUTH_LOGIN'])) {
                                                         }
                                                         if(form.getForm().isValid()) {
                                                             form.getForm().submit({
-                                                                url: '/~dawid/webhomebudget/Service/user/',
+                                                                url: URLPrefix + '/Service/user/',
                                                                 method: 'post',
                                                                 params: {
                                                                     command: 'create'

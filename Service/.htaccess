@@ -1,7 +1,7 @@
-
-    RewriteEngine On
-    RewriteBase /~bob/WebHomeBudget/Service
-    RewriteCond %{REQUEST_URI} !dispatch\.php$
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule .* dispatch.php [L,QSA]
-
+# copy to Service directory
+RewriteEngine On
+# left here on purpose (as example)
+RewriteBase /~bob/WebHomeBudget/Service
+RewriteCond %{REQUEST_URI} !dispatch\.php$
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule .* dispatch.php [L,QSA]
