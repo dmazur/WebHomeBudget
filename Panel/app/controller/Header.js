@@ -45,7 +45,7 @@ Ext.define('NB.controller.Header', {
     
     logout: function() {
         Ext.Ajax.request({
-            url: '/Service/user/',
+            url: '/Service/user',
             method: 'post',
             params: {
                 command: 'logout'
@@ -72,7 +72,7 @@ Ext.define('NB.controller.Header', {
         var store = this.getStore('User');
         if(form.getForm().isValid()) {
             form.getForm().submit({
-                url: '/Service/user/',
+                url: '/Service/user',
                 method: 'put',
                 success: function(form, action) {
                     button.up('window').close();
@@ -100,7 +100,7 @@ Ext.define('NB.controller.Header', {
         }
         if(form.getForm().isValid()) {
             form.getForm().submit({
-                url: '/Service/user/',
+                url: '/Service/user',
                 method: 'post',
                 params: {
                     command: 'changePassword',

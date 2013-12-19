@@ -14,6 +14,7 @@ use Tonic\Resource,
  * annotations allow this resource to match multiple URLs.
  *
  * @uri /user
+ * @uri /user/
  * @uri /user/:login
  */
 class User extends Resource

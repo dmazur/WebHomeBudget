@@ -9,6 +9,7 @@ use Tonic\Resource,
 
 /**
  * @uri /category
+ * @uri /category/
  * @uri /category/:login
  */
 class Category extends Resource
