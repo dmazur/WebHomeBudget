@@ -20,6 +20,13 @@ if (isset($_SESSION['USER_AUTH_LOGIN'])) {
 <body id="login_body">
     <script src="Panel/config.js"></script> 
     <script type="text/javascript">
+        
+        function submitOnEnter(field, event) {
+            if (event.getKey() == event.ENTER) {
+                field.up('form').getForm().submit();
+            }
+        }
+    
 
 
 
@@ -59,12 +66,20 @@ if (isset($_SESSION['USER_AUTH_LOGIN'])) {
                         ],
                         defaults: {
                             width: 300,
-                            labelWidth: 100
+                            labelWidth: 100,
+                            listeners: {
+                                specialkey: function(field, event){
+                                    if (event.getKey() == event.ENTER) {
+                                        Ext.getCmp('login-button').handler();
+                                    }
+                                }
+                            }
                         },
                         bbar: [
                             {
                                 xtype: 'button',
                                 text: 'Zaloguj',
+                                id: 'login-button',
                                 handler: function() {
                                     if (Ext.getCmp('login_form').getForm().isValid()) {
                                         var loginFormFields = Ext.getCmp('login_form').getValues();
@@ -145,10 +160,20 @@ if (isset($_SESSION['USER_AUTH_LOGIN'])) {
                                                     inputWidth: 200
                                                 }
                                             ],
+                                            defaults: {
+                                                listeners: {
+                                                    specialkey: function(field, event){
+                                                        if (event.getKey() == event.ENTER) {
+                                                            Ext.getCmp('register-button').handler();
+                                                        }
+                                                    }
+                                                }
+                                            },
                                             bbar: [
                                                 {
                                                     xtype: 'button',
                                                     text: 'Utwórz konto',
+                                                    id: "register-button",
                                                     handler: function() {
                                                         var form = Ext.getCmp('new_user_form');
                                                         var values = form.getValues();
