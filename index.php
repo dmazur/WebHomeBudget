@@ -20,14 +20,6 @@ if (isset($_SESSION['USER_AUTH_LOGIN'])) {
 <body id="login_body">
     <script src="Panel/config.js"></script> 
     <script type="text/javascript">
-        
-        function submitOnEnter(field, event) {
-            if (event.getKey() == event.ENTER) {
-                field.up('form').getForm().submit();
-            }
-        }
-    
-
 
 
         Ext.onReady(function() {
