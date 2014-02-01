@@ -57,3 +57,34 @@ ALTER TABLE ONLY "Users"
 
 ALTER TABLE ONLY "Categories"
     ADD CONSTRAINT "Categories_author_fkey" FOREIGN KEY (author) REFERENCES "Users"(id_user) ON DELETE CASCADE;
+
+-- Add Bills table
+
+CREATE TABLE "Bills" (
+    id_bill integer NOT NULL,
+    description character varying(1024),
+    value real NOT NULL,
+    category integer NOT NULL
+);
+
+ALTER TABLE public."Bills" OWNER TO admin;
+
+COMMENT ON COLUMN "Bills".category IS 'category id';
+
+CREATE SEQUENCE "Bills_id_bill_seq"
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+ALTER TABLE public."Bills_id_bill_seq" OWNER TO admin;
+
+ALTER SEQUENCE "Bills_id_bill_seq" OWNED BY "Bills".id_bill;
+
+ALTER TABLE ONLY "Bills" ALTER COLUMN id_bill SET DEFAULT nextval('"Bills_id_bill_seq"'::regclass);
+
+ALTER TABLE ONLY "Bills"
+    ADD CONSTRAINT "Bills_pkey" PRIMARY KEY (id_bill);
+
+ALTER TABLE ONLY "Bills"
+    ADD CONSTRAINT "Bills_category_fkey" FOREIGN KEY (category) REFERENCES "Categories"(id_category) ON DELETE CASCADE;
