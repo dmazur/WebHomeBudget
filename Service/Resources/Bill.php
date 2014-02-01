@@ -30,11 +30,6 @@ class Bill extends Resource
         $db = new DataAccess();
         $user_id = $session->getParam('USER_AUTH_ID');
 
-        SELECT "id_bill", "description", "value"
-            FROM "Bills" 
-	    
-            WHERE "Categories".author=1
-
         $sql = 'SELECT "id_bill", "description", "value"
             FROM "Bills"
             INNER JOIN "Categories" ON ("Categories".id_category = "Bills".category) 
