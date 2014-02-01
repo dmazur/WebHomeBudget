@@ -4,8 +4,6 @@ CREATE TABLE "Categories" (
     name character varying(32) NOT NULL
 );
 
-ALTER TABLE public."Categories" OWNER TO admin;
-
 COMMENT ON COLUMN "Categories".author IS 'id_user of the author';
 
 CREATE SEQUENCE "Categories_id_category_seq"
@@ -14,9 +12,6 @@ CREATE SEQUENCE "Categories_id_category_seq"
     NO MINVALUE
     NO MAXVALUE
     CACHE 1;
-
-
-ALTER TABLE public."Categories_id_category_seq" OWNER TO admin;
 
 ALTER SEQUENCE "Categories_id_category_seq" OWNED BY "Categories".id_category;
 
@@ -27,9 +22,6 @@ CREATE TABLE "Users" (
     email character varying(255)
 );
 
-
-ALTER TABLE public."Users" OWNER TO admin;
-
 CREATE SEQUENCE "User_id_user_seq"
     START WITH 1
     INCREMENT BY 1
@@ -37,8 +29,6 @@ CREATE SEQUENCE "User_id_user_seq"
     NO MAXVALUE
     CACHE 1;
 
-
-ALTER TABLE public."User_id_user_seq" OWNER TO admin;
 
 ALTER SEQUENCE "User_id_user_seq" OWNED BY "Users".id_user;
 
