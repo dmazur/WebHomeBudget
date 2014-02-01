@@ -66,7 +66,7 @@ Ext.define('NB.controller.Category', {
             if (button === 'yes') {
                 var id = record.get('id_category');
                 Ext.Ajax.request({
-                    url: '/Service/category/',
+                    url: '/Service/category',
                     method: 'delete',
                     params: {
                         id_category: id
@@ -111,7 +111,7 @@ Ext.define('NB.controller.Category', {
         var store = this.getStore('Category');
         if(form.getForm().isValid()) {
             form.getForm().submit({
-                url: '/Service/category/',
+                url: '/Service/category',
                 method: method,
                 success: function(form, action) {
                     button.up('window').close();
