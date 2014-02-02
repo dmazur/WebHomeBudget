@@ -42,11 +42,12 @@ Ext.define('NB.view.bill.Edit', {
                     allowBlank: false,
                     xtype: 'combobox',
                     name : 'category',
+                    model: 'NB.model.Category',
                     fieldLabel: 'Kateogria',
-                    store: [
-                        ["1", "Kategory 1"],
-                        ["2", "Kategory 2"]
-                    ]
+                    store: 'Category',
+                    queryMode:'local',
+                    valueField: 'id_category',
+                    displayField: 'name'
 
                 }
             ]
