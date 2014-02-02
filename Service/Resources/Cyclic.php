@@ -145,7 +145,7 @@ class Cyclic extends Resource
             WHERE "id_cyclic"=:id';
         
         $dbs = $db->prepare($sql);
-        $dbs->bindValue(":id", $id_bill, PDO::PARAM_INT);
+        $dbs->bindValue(":id", $id_cyclic, PDO::PARAM_INT);
         $dbs->bindValue(":value", $value, PDO::PARAM_STR);
         $dbs->bindValue(":category", $category, PDO::PARAM_STR);
         $dbs->bindValue(":description", $description, PDO::PARAM_STR);
