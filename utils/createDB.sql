@@ -78,3 +78,37 @@ ALTER TABLE ONLY "Bills"
 
 ALTER TABLE ONLY "Bills"
     ADD CONSTRAINT "Bills_category_fkey" FOREIGN KEY (category) REFERENCES "Categories"(id_category) ON DELETE CASCADE;
+
+-- Add Cyclic
+
+CREATE TABLE "Cyclic" (
+    id_cyclic integer NOT NULL,
+    description character varying(1024),
+    value real NOT NULL,
+    category integer NOT NULL,
+    "when" date NOT NULL,
+    "from" date NOT NULL,
+    "to" date NOT NULL
+);
+
+ALTER TABLE public."Cyclic" OWNER TO admin;
+
+COMMENT ON COLUMN "Cyclic".category IS 'category id';
+
+CREATE SEQUENCE "Cyclic_id_cyclic_seq"
+    INCREMENT BY 1
+    NO MAXVALUE
+    NO MINVALUE
+    CACHE 1;
+
+ALTER TABLE public."Cyclic_id_cyclic_seq" OWNER TO admin;
+
+ALTER SEQUENCE "Cyclic_id_cyclic_seq" OWNED BY "Cyclic".id_cyclic;
+
+ALTER TABLE ONLY "Cyclic" ALTER COLUMN id_cyclic SET DEFAULT nextval('"Cyclic_id_cyclic_seq"'::regclass);
+
+ALTER TABLE ONLY "Cyclic"
+    ADD CONSTRAINT "Cyclic_pkey" PRIMARY KEY (id_cyclic);
+
+ALTER TABLE ONLY "Cyclic"
+    ADD CONSTRAINT "Cyclic_category_fkey" FOREIGN KEY (category) REFERENCES "Categories"(id_category) ON DELETE CASCADE;
