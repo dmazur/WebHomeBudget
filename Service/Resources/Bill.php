@@ -30,7 +30,7 @@ class Bill extends Resource
         $db = new DataAccess();
         $user_id = $session->getParam('USER_AUTH_ID');
 
-        $sql = 'SELECT "id_bill", "description", "value"
+        $sql = 'SELECT "id_bill", "description", "value", "category"
             FROM "Bills"
             INNER JOIN "Categories" ON ("Categories".id_category = "Bills".category) 
             WHERE "Categories".author=:author';
@@ -73,7 +73,7 @@ class Bill extends Resource
 
         $description = $requestData['description'];
         $value = $requestData['value'];
-        $category_id = $requestData['category_id'];
+        $category_id = $requestData['category'];
 
         $session = new MySessionHandler();
         $db = new DataAccess();
@@ -121,6 +121,7 @@ class Bill extends Resource
         $id_bill = $requestData['id_bill'];
         $description = $requestData['description'];
         $value = $requestData['value'];
+        $category = $requestData['category'];
 
         if (!$id_bill) {
             $result['success'] = false;
@@ -131,12 +132,13 @@ class Bill extends Resource
         $db = new DataAccess();
         
         $sql = 'UPDATE "Bills" 
-            SET "description"= :description, "value" = :value
+            SET "description"= :description, "value" = :value, "category" = :category
             WHERE "id_bill"=:id';
         
         $dbs = $db->prepare($sql);
         $dbs->bindValue(":id", $id_bill, PDO::PARAM_INT);
         $dbs->bindValue(":value", $value, PDO::PARAM_STR);
+        $dbs->bindValue(":category", $category, PDO::PARAM_STR);
         $dbs->bindValue(":description", $description, PDO::PARAM_STR);
         $dbs->execute();
         
@@ -146,7 +148,7 @@ class Bill extends Resource
         }
         else {
             $result['success'] = false;
-            $result['msg'] = "Problem z zapisaniem zmian w rachunku do bazy danych";
+            $result['msg'] = "Problem z zapisaniem zmian w rachunku do bazy danych, sprawdź czy masz dobrą kategorię.";
         }
         
         return new Response(200, $result);

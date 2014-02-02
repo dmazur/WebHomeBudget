@@ -3,6 +3,7 @@ Ext.define('NB.model.Bill', {
     fields: [
         {name: 'id_bill', type: 'auto'}, 
         {name: 'description', type: 'string'}, 
-        {name: 'value', type: 'float'}
+        {name: 'value', type: 'float'},
+        {name: 'category', type: 'int'}
     ]
 });

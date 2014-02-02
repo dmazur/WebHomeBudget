@@ -18,7 +18,8 @@ Ext.application({
     
     controllers: [
         'Header',
-        'Category'
+        'Category',
+        'Bill'
     ],
 
     launch: function() {
@@ -71,6 +72,10 @@ Ext.application({
                     items: [
                         {
                             xtype: 'categorylist',
+                            icon: '../Images/Icons/tag_blue.png'
+                        },
+                        {
+                            xtype: 'billlist',
                             icon: '../Images/Icons/tag_blue.png'
                         }
                     ]
