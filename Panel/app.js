@@ -72,15 +72,15 @@ Ext.application({
                     },
                     items: [
                         {
-                            xtype: 'categorylist',
-                            icon: '../Images/Icons/tag_blue.png'
-                        },
-                        {
                             xtype: 'billlist',
                             icon: '../Images/Icons/tag_blue.png'
                         },
                         {
                             xtype: 'cycliclist',
+                            icon: '../Images/Icons/tag_blue.png'
+                        },
+                        {
+                            xtype: 'categorylist',
                             icon: '../Images/Icons/tag_blue.png'
                         }
                     ]

@@ -10,11 +10,15 @@ Ext.define('NB.view.cyclic.List' ,{
     initComponent: function() {
         this.columns = [
             {header: 'Opis',  dataIndex: 'description',  flex: 1},
-            {header: 'Wartość',  dataIndex: 'value',  flex: 1},
-            {header: 'Kategoria',  dataIndex: 'category',  flex: 1},
-            {header: 'Kiedy się odpala',  dataIndex: 'when',  flex: 1},
-            {header: 'Od kiedy',  dataIndex: 'from',  flex: 1},
-            {header: 'Do kiedy',  dataIndex: 'to',  flex: 1}
+            {header: 'Wartość',  dataIndex: 'value',  flex: 1, 
+                renderer: function (val) {return Ext.util.Format.currency(val);}
+            },
+            {header: 'Kategoria',  dataIndex: 'category',  flex: 1,
+                renderer: Ext.ux.StoreRenderer(Ext.getStore('Category'), 'id_category', 'name')
+            },
+            {header: 'Kiedy się odpala',  dataIndex: 'when',  flex: 1, renderer: Ext.util.Format.dateRenderer('Y-m-d')},
+            {header: 'Od kiedy',  dataIndex: 'from',  flex: 1, renderer: Ext.util.Format.dateRenderer('Y-m-d')},
+            {header: 'Do kiedy',  dataIndex: 'to',  flex: 1, renderer: Ext.util.Format.dateRenderer('Y-m-d')}
         ];
         
         this.method = 'put';

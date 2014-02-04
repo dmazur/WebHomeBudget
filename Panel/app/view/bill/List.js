@@ -10,8 +10,12 @@ Ext.define('NB.view.bill.List' ,{
     initComponent: function() {
         this.columns = [
             {header: 'Opis',  dataIndex: 'description',  flex: 1},
-            {header: 'Wartość',  dataIndex: 'value',  flex: 1},
-            {header: 'Kategoria',  dataIndex: 'category',  flex: 1}
+            {header: 'Wartość',  dataIndex: 'value',  flex: 1, 
+                renderer: function (val) {return Ext.util.Format.currency(val);}
+            },
+            {header: 'Kategoria',  dataIndex: 'category',  flex: 1, 
+                renderer: Ext.ux.StoreRenderer(Ext.getStore('Category'), 'id_category', 'name')
+            }
         ];
         
         this.method = 'put';

@@ -12,5 +12,12 @@ Ext.define('NB.store.Category', {
             root: 'data',
             successProperty: 'success'
         }
+    },
+    
+    listeners: {
+        load: function() {
+            Ext.getStore('Bill').load();
+            Ext.getStore('Cyclic').load();
+        }
     }
 });

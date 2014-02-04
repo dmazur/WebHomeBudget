@@ -17,3 +17,16 @@ Ext.ux.Toast = function() {
         }
     }
 }();
+
+/**
+ * Helps when rendering model name from id in grids
+ */
+Ext.ux.StoreRenderer = function(store, valueField, displayField) {
+    return function(v) {
+        var record = store.findRecord(valueField, v);
+        if (record) {
+            return record.get(displayField);
+        }
+        return '';
+    };
+};

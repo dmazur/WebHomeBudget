@@ -1,7 +1,6 @@
 Ext.define('NB.store.Bill', {
     extend: 'Ext.data.Store',
     model: 'NB.model.Bill',
-    autoLoad: true,
 
     proxy: {
         type: 'ajax',

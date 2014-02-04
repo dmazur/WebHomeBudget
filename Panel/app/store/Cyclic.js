@@ -1,7 +1,6 @@
 Ext.define('NB.store.Cyclic', {
     extend: 'Ext.data.Store',
     model: 'NB.model.Cyclic',
-    autoLoad: true,
 
     proxy: {
         type: 'ajax',
