@@ -42,7 +42,7 @@ Ext.define('NB.controller.Cyclic', {
     },
     
     editCyclic: function(button) {
-        var grid = Ext.getCmp('libblistgrid');
+        var grid = Ext.getCmp('cycliclistgrid');
         var record = grid.getSelectionModel().getSelection()[0];
         if (!record) {
             Ext.Msg.alert('Błąd', 'Zaznacz najpierw rachunek cykliczny do edycji');

@@ -91,7 +91,7 @@ class Bill extends Resource
         $dbs = $db->prepare($sql);
         $dbs->bindValue(":category", $category_id, PDO::PARAM_INT);
         // Podobno dla parametru float używamy PARAM_STR
-        $dbs->bindValue(":value", $value, PDO::PARAM_STR);
+        $dbs->bindValue(":value", implode('.', explode(',', $value)), PDO::PARAM_STR);
         $dbs->bindValue(":description", $description, PDO::PARAM_STR);
         $dbs->execute();
         
@@ -137,7 +137,7 @@ class Bill extends Resource
         
         $dbs = $db->prepare($sql);
         $dbs->bindValue(":id", $id_bill, PDO::PARAM_INT);
-        $dbs->bindValue(":value", $value, PDO::PARAM_STR);
+        $dbs->bindValue(":value", implode('.', explode(',', $value)), PDO::PARAM_STR);
         $dbs->bindValue(":category", $category, PDO::PARAM_STR);
         $dbs->bindValue(":description", $description, PDO::PARAM_STR);
         $dbs->execute();

@@ -7,3 +7,4 @@ var URLPrefix = '/~dawid/webhomebudget';
 
 // some locale settings
 Ext.util.Format.currencyAtEnd = true;
+Ext.util.Format.decimalSeparator = ',';

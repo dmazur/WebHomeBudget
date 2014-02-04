@@ -34,7 +34,10 @@ Ext.define('NB.view.bill.Edit', {
                     width: 350,
                     maxLength: 32,
                     allowBlank: false,
-                    xtype: 'textfield',
+                    xtype: 'numberfield',
+                    decimalPrecision: 2,
+                    decimalSeparator: Ext.util.Format.decimalSeparator,
+                    minValue: 0,
                     name : 'value',
                     fieldLabel: 'Wartość'
                 },

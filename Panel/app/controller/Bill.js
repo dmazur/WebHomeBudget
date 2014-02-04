@@ -42,7 +42,7 @@ Ext.define('NB.controller.Bill', {
     },
     
     editBill: function(button) {
-        var grid = Ext.getCmp('libblistgrid');
+        var grid = Ext.getCmp('billlistgrid');
         var record = grid.getSelectionModel().getSelection()[0];
         if (!record) {
             Ext.Msg.alert('Błąd', 'Zaznacz najpierw rachunek do edycji');
