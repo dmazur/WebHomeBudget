@@ -18,7 +18,8 @@ Ext.define('NB.view.bill.List' ,{
             },
             {header: 'Kategoria',  dataIndex: 'category',  flex: 1, 
                 renderer: Ext.ux.StoreRenderer(Ext.getStore('Category'), 'id_category', 'name')
-            }
+            },
+            {header: 'Data', dataIndex: 'when', flex: 1, renderer: Ext.util.Format.dateRenderer('Y-m-d')}
         ];
         
         this.method = 'put';

@@ -46,12 +46,17 @@ Ext.define('NB.view.bill.Edit', {
                     xtype: 'combobox',
                     name : 'category',
                     model: 'NB.model.Category',
-                    fieldLabel: 'Kateogria',
+                    fieldLabel: 'Kategoria',
                     store: 'Category',
                     queryMode:'local',
                     valueField: 'id_category',
                     displayField: 'name'
-
+                },
+                {
+                    allowBlank: false,
+                    name: 'when',
+                    fieldLabel: 'Data',
+                    xtype: 'datefield'
                 }
             ]
         }];

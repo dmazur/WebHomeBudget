@@ -55,7 +55,8 @@ CREATE TABLE "Bills" (
     id_bill integer NOT NULL,
     description character varying(1024),
     value real NOT NULL,
-    category integer NOT NULL
+    category integer NOT NULL,
+    when date NOT NULL
 );
 
 ALTER TABLE public."Bills" OWNER TO admin;

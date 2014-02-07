@@ -4,6 +4,7 @@ Ext.define('NB.model.Bill', {
         {name: 'id_bill', type: 'auto'}, 
         {name: 'description', type: 'string'}, 
         {name: 'value', type: 'float'},
-        {name: 'category', type: 'int'}
+        {name: 'category', type: 'int'},
+        {name: 'when', type: 'date'}
     ]
 });

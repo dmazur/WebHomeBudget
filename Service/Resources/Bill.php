@@ -30,7 +30,7 @@ class Bill extends Resource
         $db = new DataAccess();
         $user_id = $session->getParam('USER_AUTH_ID');
 
-        $sql = 'SELECT "id_bill", "description", "value", "category"
+        $sql = 'SELECT "id_bill", "description", "value", "category", "when"
             FROM "Bills"
             INNER JOIN "Categories" ON ("Categories".id_category = "Bills".category) 
             WHERE "Categories".author=:author';
@@ -74,6 +74,7 @@ class Bill extends Resource
         $description = $requestData['description'];
         $value = $requestData['value'];
         $category_id = $requestData['category'];
+        $when = $requestData['when'];
 
         $session = new MySessionHandler();
         $db = new DataAccess();
@@ -83,8 +84,8 @@ class Bill extends Resource
         //Tutaj trzeba by sprawdzać czy rzeczywiście categoria należy do użytkownika, ale można to zlać i dopisać do przyszłych tasków
 
 
-        $sql = 'INSERT INTO "Bills" ("description", "value", "category")
-            VALUES (:description, :value, :category)';
+        $sql = 'INSERT INTO "Bills" ("description", "value", "category", "when")
+            VALUES (:description, :value, :category, :when)';
         
 
 
@@ -93,6 +94,7 @@ class Bill extends Resource
         // Podobno dla parametru float używamy PARAM_STR
         $dbs->bindValue(":value", implode('.', explode(',', $value)), PDO::PARAM_STR);
         $dbs->bindValue(":description", $description, PDO::PARAM_STR);
+        $dbs->bindValue(":when", $when, PDO::PARAM_STR);
         $dbs->execute();
         
         if ($dbs->rowCount() > 0) {
@@ -122,6 +124,7 @@ class Bill extends Resource
         $description = $requestData['description'];
         $value = $requestData['value'];
         $category = $requestData['category'];
+        $when = $requestData['when'];
 
         if (!$id_bill) {
             $result['success'] = false;
@@ -132,7 +135,7 @@ class Bill extends Resource
         $db = new DataAccess();
         
         $sql = 'UPDATE "Bills" 
-            SET "description"= :description, "value" = :value, "category" = :category
+            SET "description"= :description, "value" = :value, "category" = :category, "when" = :when
             WHERE "id_bill"=:id';
         
         $dbs = $db->prepare($sql);
@@ -140,6 +143,7 @@ class Bill extends Resource
         $dbs->bindValue(":value", implode('.', explode(',', $value)), PDO::PARAM_STR);
         $dbs->bindValue(":category", $category, PDO::PARAM_STR);
         $dbs->bindValue(":description", $description, PDO::PARAM_STR);
+        $dbs->bindValue(":when", $when, PDO::PARAM_STR);
         $dbs->execute();
         
         if ($dbs->rowCount() > 0) {
