@@ -30,7 +30,7 @@ class Category extends Resource
         $db = new DataAccess();
         $user_id = $session->getParam('USER_AUTH_ID');
         
-        $sql = 'SELECT "id_category", "name"
+        $sql = 'SELECT "id_category", "name", "color"
             FROM "Categories" 
             WHERE "author"=:author';
         if ($id_category) {
@@ -74,12 +74,13 @@ class Category extends Resource
         $db = new DataAccess();
         $user_id = $session->getParam('USER_AUTH_ID');
         
-        $sql = 'INSERT INTO "Categories" ("name", "author")
-            VALUES (:name, :author)';
+        $sql = 'INSERT INTO "Categories" ("name", "author", "color")
+            VALUES (:name, :author, :color)';
         
         $dbs = $db->prepare($sql);
         $dbs->bindValue(":author", $user_id, PDO::PARAM_INT);
         $dbs->bindValue(":name", $name, PDO::PARAM_STR);
+        $dbs->bindValue(":color", $requestData['color'], PDO::PARAM_STR);
         $dbs->execute();
         
         if ($dbs->rowCount() > 0) {
@@ -117,12 +118,13 @@ class Category extends Resource
         $db = new DataAccess();
         
         $sql = 'UPDATE "Categories" 
-            SET "name"=:name
+            SET "name"=:name, "color"=:color
             WHERE "id_category"=:id';
         
         $dbs = $db->prepare($sql);
         $dbs->bindValue(":id", $id_category, PDO::PARAM_INT);
         $dbs->bindValue(":name", $name, PDO::PARAM_STR);
+        $dbs->bindValue(":color", $requestData['color'], PDO::PARAM_STR);
         $dbs->execute();
         
         if ($dbs->rowCount() > 0) {

@@ -3,6 +3,7 @@ Ext.define('NB.model.Category', {
     fields: [
         {name: 'id_category', type: 'auto'}, 
         {name: 'name', type: 'string'}, 
-        {name: 'author', type: 'int'}
+        {name: 'author', type: 'int'},
+        {name: 'color', type: 'string'}
     ]
 });

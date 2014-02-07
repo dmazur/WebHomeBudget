@@ -30,3 +30,25 @@ Ext.ux.StoreRenderer = function(store, valueField, displayField) {
         return '';
     };
 };
+
+/**
+ * Renders color in grid
+ */
+Ext.ux.RendererColor = function(value, metaData) {
+    metaData.style = 'background:#'+value+';';
+    return '';
+};
+
+/**
+ * We need to go deeper
+ */
+Ext.ux.StoreColorRenderer = function(store, valueField, colorField) {
+    return function(v, metaData) {
+        var record = store.findRecord(valueField, v);
+        if (record) {
+            metaData.style = 'background:#'+record.get(colorField);+';';
+            return '';
+        }
+        return '';
+    };
+};

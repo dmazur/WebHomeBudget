@@ -6,7 +6,7 @@ Ext.define('NB.view.category.Edit', {
     layout: 'fit',
     autoShow: true,
     width: 400,
-    height: 100,
+    height: 210,
     modal: true,
     method: null,
 
@@ -28,6 +28,31 @@ Ext.define('NB.view.category.Edit', {
                     xtype: 'textfield',
                     name : 'name',
                     fieldLabel: 'Nazwa'
+                },
+                {
+                    xtype: 'label',
+                    text: 'Kolor:'
+                },
+                {
+                    xtype: 'colorpicker',
+                    value: '993300', //initial value
+                    id: 'category_edit_colorpicker',
+                    listeners: {
+                        select: function(picker, color) {
+                            Ext.getCmp('category_edit_color').setValue(color);
+                        }
+                    }
+                },
+                {
+                    xtype: 'hidden',
+                    name: 'color',
+                    value: '993300', //initial value
+                    id: 'category_edit_color',
+                    listeners: {
+                        change: function(field, value) {
+                            Ext.getCmp('category_edit_colorpicker').select(value);
+                        }
+                    }
                 }
             ]
         }];

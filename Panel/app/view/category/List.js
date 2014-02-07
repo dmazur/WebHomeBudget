@@ -9,6 +9,7 @@ Ext.define('NB.view.category.List' ,{
 
     initComponent: function() {
         this.columns = [
+            {dataIndex: 'color', width: 5, renderer: Ext.ux.RendererColor},
             {header: 'Nazwa',  dataIndex: 'name',  flex: 1}
         ];
         

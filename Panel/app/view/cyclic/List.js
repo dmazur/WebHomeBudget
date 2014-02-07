@@ -9,6 +9,9 @@ Ext.define('NB.view.cyclic.List' ,{
 
     initComponent: function() {
         this.columns = [
+            {dataIndex: 'category', width: 5, 
+                renderer: Ext.ux.StoreColorRenderer(Ext.getStore('Category'), 'id_category', 'color')
+            },
             {header: 'Opis',  dataIndex: 'description',  flex: 1},
             {header: 'Wartość',  dataIndex: 'value',  flex: 1, 
                 renderer: function (val) {return Ext.util.Format.currency(val);}

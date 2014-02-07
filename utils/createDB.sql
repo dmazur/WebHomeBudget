@@ -2,6 +2,7 @@ CREATE TABLE "Categories" (
     id_category integer NOT NULL,
     author integer NOT NULL,
     name character varying(32) NOT NULL
+    color character varying(6) NOT NULL DEFAULT 'FFFFFF'
 );
 
 COMMENT ON COLUMN "Categories".author IS 'id_user of the author';
