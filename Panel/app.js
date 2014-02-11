@@ -20,7 +20,8 @@ Ext.application({
         'Header',
         'Category',
         'Bill',
-        'Cyclic'
+        'Cyclic',
+        'Stats'
     ],
 
     launch: function() {
@@ -67,7 +68,9 @@ Ext.application({
                     xtype: 'tabpanel',
                     listeners: {
                         tabchange: function(panel, value) {
-                            value.getStore().load();
+                            if (typeof panel.getName === 'function') {
+                                value.getStore().load();
+                            }
                         }
                     },
                     items: [
@@ -82,6 +85,9 @@ Ext.application({
                         {
                             xtype: 'categorylist',
                             icon: '../Images/Icons/tag_blue.png'
+                        },
+                        {
+                            xtype: 'statsmain'
                         }
                     ]
                 }
