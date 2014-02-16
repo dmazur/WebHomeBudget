@@ -57,13 +57,30 @@ Ext.define('NB.view.cyclic.Edit', {
                     xtype: 'datefield',
                     name: 'when',
                     fieldLabel: 'Pierwsze odpalenie',
-                    allowBlank: false
+                    allowBlank: false,
+                    validator: function(value){
+                        from_value = this.up("form").getForm().findField("from").getValue();
+                        to_value = this.up("form").getForm().findField("to").getValue();
+                        my_value = this.getValue();
+                        if ((my_value >= from_value) && (my_value <= to_value))
+                            return true
+                        else
+                            return "Pierwsze odpalenie mysi znajdować się pomiędzy wartościami Od kiedy - Do kiedy"  
+                    }
                 },
                 {
                     xtype: 'datefield',
                     name: 'from',
                     fieldLabel: 'Od kiedy',
-                    allowBlank: false
+                    allowBlank: false,
+                    validator: function(value){
+                        to_value = this.up("form").getForm().findField("to").getValue();
+                        my_value = this.getValue();
+                        if (my_value < to_value)
+                            return true
+                        else
+                            return "Data Od kiedy nie może być większa od pola Do kiedy"  
+                    }
                 },
                 {
                     xtype: 'datefield',
