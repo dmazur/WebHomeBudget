@@ -1,7 +1,7 @@
 CREATE TABLE "Categories" (
     id_category integer NOT NULL,
     author integer NOT NULL,
-    name character varying(32) NOT NULL
+    name character varying(32) NOT NULL,
     color character varying(6) NOT NULL DEFAULT 'FFFFFF'
 );
 
@@ -56,7 +56,7 @@ CREATE TABLE "Bills" (
     description character varying(1024),
     value real NOT NULL,
     category integer NOT NULL,
-    when date NOT NULL
+    "when" date NOT NULL
 );
 
 ALTER TABLE public."Bills" OWNER TO admin;
