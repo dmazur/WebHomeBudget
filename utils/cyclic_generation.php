@@ -1,6 +1,4 @@
 <?php 
-
-
 date_default_timezone_set('Africa/Lagos');
 require_once '../config.php';
 require_once '../Service/Tools/DataAccess.php';
@@ -20,7 +18,7 @@ foreach ($data as &$value) {
     $from = $value['from'];
     $to = $value['to'];
     $today = date('m/d');
-    echo "Today is: ";
+    echo "\nToday is: ";
     print_r($today);
     echo " Cyclic date is: ";
     print_r($when_date_without_year = date("m/d",strtotime($when_date)));
@@ -56,7 +54,6 @@ foreach ($data as &$value) {
     else{
       echo "\n\tToday is not between Cyclic from and to date";
     }
-    echo "\n";
 }
 
 ?>

@@ -16,6 +16,67 @@ You can find database schema in utils folder.
 
 More recent versions of ExtJS should be handled soon.
 
+Apache configuration and mods enable
+============
+
+Requirements:
+Apache
+PostgreSQL 9.1 with PDO i PHP.
+
+Additional install:
+```shell
+sudo apt-get install php5-json php5-pgsql
+```
+
+```shell
+a2enmod userdir
+a2enmod php5
+a2enmod rewrite
+```
+
+mods-enabled/php5.conf
+```
+<IfModule mod_php5.c>
+    <FilesMatch "\.ph(p3?|tml)$">
+    SetHandler application/x-httpd-php
+    </FilesMatch>
+    <FilesMatch "\.phps$">
+    SetHandler application/x-httpd-php-source
+    </FilesMatch>
+    # To re-enable php in user directories comment the following lines
+    # (from <IfModule ...> to </IfModule>.) Do NOT set it to On as it
+    # prevents .htaccess files from disabling it.
+    # <IfModule mod_userdir.c>
+    #     <Directory /home/*/public_html>
+    #         php_admin_value engine Off
+    #     </Directory>
+    # </IfModule>
+</IfModule>
+```
+
+cat mods-enabled/userdir.conf
+```
+<IfModule mod_userdir.c>
+        UserDir public_html
+        UserDir disabled root
+
+        <Directory /home/*/public_html>
+                #AllowOverride FileInfo AuthConfig Limit Indexes
+                #Options MultiViews Indexes SymLinksIfOwnerMatch IncludesNoExec
+                AllowOverride All
+        Options Indexes FollowSymLinks
+        <Limit GET POST OPTIONS PUT DELETE>
+                        Order allow,deny
+                        Allow from all
+                </Limit>
+                <LimitExcept GET POST OPTIONS PUT DELETE>
+                        Order deny,allow
+                        Deny from all
+                </LimitExcept>
+        </Directory>
+</IfModule>
+```
+^Take a look that it add PUT and DELETE methods
 
 ## Contributing (always welcome :) )
 
