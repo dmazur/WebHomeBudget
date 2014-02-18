@@ -11,38 +11,50 @@ $dbs = $db->prepare($sql);
 $dbs->execute();
 
 if (!$dbs->execute()) {
-  echo "Nie udalo sie polaczyc aby pobrac dane cykliczne z bazy";
+  echo "\nCould not connect to database when try to fetch Cyclic";
 }
 $data = $dbs->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($data as &$value) {
     $when_date = $value['when'];
-    $from_date = $value['from'];
-    $to_date = $value['to'];
+    $from = $value['from'];
+    $to = $value['to'];
     $today = date('m/d');
-    echo "Dzisiaj jest: ";
+    echo "Today is: ";
     print_r($today);
-    echo " Jaka data Cycklicznego jest: ";
+    echo " Cyclic date is: ";
     print_r($when_date_without_year = date("m/d",strtotime($when_date)));
-    echo " Czy są równe: ";
+    echo " Are they equal: ";
     print_r(strcmp($today, $when_date_without_year));
-    if(strcmp($today, $when_date_without_year) == 0){
-      echo "\nTworze rachunek cykliczny";
-      $db_new_bill = new DataAccess();   
-      $sql = 'INSERT INTO "Bills" ("description", "value", "category", "when")
-            VALUES (:description, :value, :category, :when)';
-      $dbs = $db->prepare($sql);
-      $dbs->bindValue(":category", $value['category'], PDO::PARAM_INT);
-      $dbs->bindValue(":value", $value['value'], PDO::PARAM_STR);
-      $dbs->bindValue(":description", $value['description'], PDO::PARAM_STR);
-      $dbs->bindValue(":when", $value['when'], PDO::PARAM_STR);
-      $dbs->execute();
-      if ($dbs->rowCount() > 0) {
-        echo "\nStworzono nowy rachunek zwyczajny na podstawie cyklicznego";
+
+    #compare with from and to dates
+    $from_date =  strtotime($from);
+    $to_date =  strtotime($to);
+    $todays = date("Y-m-d"); 
+    $today_d = strtotime($todays);
+    if(($from_date <= $today_d) && ($today_d <= $to_date)){
+      echo "\n\tToday is between Cyclic from and to date";
+      if(strcmp($today, $when_date_without_year) == 0){
+        echo "\n\t\tI create Bill";
+        $db_new_bill = new DataAccess();   
+        $sql = 'INSERT INTO "Bills" ("description", "value", "category", "when")
+              VALUES (:description, :value, :category, :when)';
+        $dbs = $db->prepare($sql);
+        $dbs->bindValue(":category", $value['category'], PDO::PARAM_INT);
+        $dbs->bindValue(":value", $value['value'], PDO::PARAM_STR);
+        $dbs->bindValue(":description", $value['description'], PDO::PARAM_STR);
+        $dbs->bindValue(":when", $value['when'], PDO::PARAM_STR);
+        $dbs->execute();
+        if ($dbs->rowCount() > 0) {
+          echo "\n\t\tCreate new Bill from Cyclic";
+        }
+        else {
+          echo "\n\t\tProblem with creating Bill from Cyclic";
+        }
       }
-      else {
-        echo "\nNie udało się wstawić rachunku cyklicznego do tablicy";
-      }
+    }
+    else{
+      echo "\n\tToday is not between Cyclic from and to date";
     }
     echo "\n";
 }
