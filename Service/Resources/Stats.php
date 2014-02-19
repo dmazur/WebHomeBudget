@@ -116,6 +116,51 @@ class Stats extends Resource
         $result['data'] = $data;
         return new Response(200, $result);
     }
+
+    /**
+     * Get sum of values chosen year by months
+     * @method GET
+     * @command getAllSumByTime
+     * @provides application/json
+     * @json
+     * @secure
+     * @return Tonic\Response
+     */
+    public function getAllSumByTime() {
+        $session = new MySessionHandler();
+        $db = new DataAccess();
+        $user_id = $session->getParam('USER_AUTH_ID');
+
+        $year = $_REQUEST['year'];
+
+        $sql = 'WITH months AS ( 
+                    SELECT n AS month 
+                    FROM generate_series(1, 12) AS x(n)
+                ) 
+                SELECT m.month as month, coalesce(sum(value),0) AS sum 
+                FROM months m 
+                LEFT JOIN "Categories" c ON c.author= :author
+                LEFT JOIN "Bills" b ON c.id_category = b.category AND m.month = extract(month from b.when) AND extract(year from b.when) = :year
+                GROUP BY month
+                ORDER BY month';
+
+        $dbs = $db->prepare($sql);
+        $dbs->bindValue(":author", $user_id, PDO::PARAM_INT);
+        $dbs->bindValue(":year", $year, PDO::PARAM_INT);
+        $dbs->execute();
+        
+        if (!$dbs->execute()) {
+            $result['success'] = false;
+            $result['msg'] = "Problem z odczytem z bazy danych";
+            return new Response(200, $result);
+        }
+
+        $data = $dbs->fetchAll(PDO::FETCH_ASSOC);
+
+        $result['success'] = true;
+        $result['data'] = $data;
+        return new Response(200, $result);
+    }
     
     /**
      * Condition method to secure resources

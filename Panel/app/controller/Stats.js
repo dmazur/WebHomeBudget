@@ -9,6 +9,7 @@ Ext.define('NB.controller.Stats', {
         'Time',
         'stats.CategoryPartByTime',
         'stats.CategorySumByTime',
+        'stats.SumByTime',
         'Category'
     ],
     
@@ -17,6 +18,7 @@ Ext.define('NB.controller.Stats', {
         'Month',
         'stats.CategoryPartByTime',
         'stats.CategorySumByTime',
+        'stats.SumByTime',
         'Category'
     ],
 
