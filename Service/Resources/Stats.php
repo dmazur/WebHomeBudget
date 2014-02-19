@@ -47,7 +47,7 @@ class Stats extends Resource
         
         if (!$dbs->execute()) {
             $result['success'] = false;
-            $result['msg'] = "Problem z odczytem z bazy danych";
+            $result['msg'] = "Problem with fetch data from database";
             return new Response(200, $result);
         }
 
@@ -106,7 +106,7 @@ class Stats extends Resource
         
         if (!$dbs->execute()) {
             $result['success'] = false;
-            $result['msg'] = "Problem z odczytem z bazy danych";
+            $result['msg'] = "Problem with fetch data from database";
             return new Response(200, $result);
         }
 

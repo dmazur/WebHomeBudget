@@ -35,7 +35,7 @@ Ext.application({
             success: function(response) {
                 var resp = Ext.JSON.decode(response.responseText, true);
                 if (!resp) {
-                    Ext.Msg.alert('Błąd', "Brak odpowiedzi z serwera!");
+                    Ext.Msg.alert('Error', "No response from server!");
                     return;
                 }
                 if (resp.success === false)

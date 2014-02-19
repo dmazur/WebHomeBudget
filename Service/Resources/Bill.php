@@ -53,7 +53,7 @@ class Bill extends Resource
         }
         else {
             $result['success'] = false;
-            $result['msg'] = "Problem z odczytem rachunku z bazy danych";
+            $result['msg'] = "Problem with reading bill from database";
         }
         
         return new Response(200, $result);
@@ -80,8 +80,6 @@ class Bill extends Resource
         $db = new DataAccess();
         $user_id = $session->getParam('USER_AUTH_ID');
         
-        //TODO: usunąć ten komentarz
-        //Tutaj trzeba by sprawdzać czy rzeczywiście categoria należy do użytkownika, ale można to zlać i dopisać do przyszłych tasków
 
 
         $sql = 'INSERT INTO "Bills" ("description", "value", "category", "when")
@@ -91,7 +89,6 @@ class Bill extends Resource
 
         $dbs = $db->prepare($sql);
         $dbs->bindValue(":category", $category_id, PDO::PARAM_INT);
-        // Podobno dla parametru float używamy PARAM_STR
         $dbs->bindValue(":value", implode('.', explode(',', $value)), PDO::PARAM_STR);
         $dbs->bindValue(":description", $description, PDO::PARAM_STR);
         $dbs->bindValue(":when", $when, PDO::PARAM_STR);
@@ -103,7 +100,7 @@ class Bill extends Resource
         }
         else {
             $result['success'] = false;
-            $result['msg'] = "Problem z zapisaniem rachunku do bazy danych";
+            $result['msg'] = "Problem with writing bill to database";
         }
         
         return new Response(200, $result);
@@ -128,7 +125,7 @@ class Bill extends Resource
 
         if (!$id_bill) {
             $result['success'] = false;
-            $result['msg'] = "Brak id rachunku, zgubiłeś!";
+            $result['msg'] = "U lost bill id!";
             return new Response(200, $result);
         }
         
@@ -152,7 +149,7 @@ class Bill extends Resource
         }
         else {
             $result['success'] = false;
-            $result['msg'] = "Problem z zapisaniem zmian w rachunku do bazy danych, sprawdź czy masz dobrą kategorię.";
+            $result['msg'] = "Problem with write bill to database check category.";
         }
         
         return new Response(200, $result);

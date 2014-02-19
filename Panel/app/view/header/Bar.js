@@ -20,19 +20,19 @@ Ext.define('NB.view.header.Bar' ,{
             {
                 xtype: 'button',
                 action: 'changepassword',
-                text: 'Zmień hasło',
+                text: 'Change password',
                 icon: '../Images/Icons/key.png'
             },
             {
                 xtype: 'button',
                 action: 'options',
-                text: 'Opcje',
+                text: 'Options',
                 icon: '../Images/Icons/cog.png'
             },
             {
                 xtype: 'button',
                 action: 'logout',
-                text: 'Wyloguj',
+                text: 'Log Out',
                 icon: '../Images/Icons/door_out.png'
             }
         ];

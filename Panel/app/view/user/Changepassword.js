@@ -2,7 +2,7 @@ Ext.define('NB.view.user.Changepassword', {
     extend: 'Ext.window.Window',
     alias: 'widget.userchangepassword',
 
-    title: 'Zmień hasło',
+    title: 'Change Password',
     layout: 'fit',
     autoShow: true,
     modal: true,
@@ -17,21 +17,21 @@ Ext.define('NB.view.user.Changepassword', {
                     {
                         xtype: 'textfield',
                         name : 'oldPassword',
-                        fieldLabel: 'Stare hasło',
+                        fieldLabel: 'Old Password',
                         inputType: 'password',
                         allowBlank: false
                     },
                     {
                         xtype: 'textfield',
                         name : 'newPassword1',
-                        fieldLabel: 'Nowe hasło',
+                        fieldLabel: 'New Password',
                         inputType: 'password',
                         allowBlank: false
                     },
                     {
                         xtype: 'textfield',
                         name : 'newPassword2',
-                        fieldLabel: 'Powtórz nowe hasło',
+                        fieldLabel: 'New Password Confirmation',
                         inputType: 'password',
                         allowBlank: false
                     }
@@ -41,7 +41,7 @@ Ext.define('NB.view.user.Changepassword', {
 
         this.buttons = [
             {
-                text: 'Zapisz',
+                text: 'Save',
                 action: 'save',
                 icon: '../Images/Icons/disk.png'
             },

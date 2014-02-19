@@ -53,7 +53,7 @@ class Cyclic extends Resource
         }
         else {
             $result['success'] = false;
-            $result['msg'] = "Problem z odczytem rachunku cyklicznego z bazy danych";
+            $result['msg'] = "Problem with writing cyclic to database";
         }
         
         return new Response(200, $result);
@@ -81,11 +81,6 @@ class Cyclic extends Resource
         $session = new MySessionHandler();
         $db = new DataAccess();
         $user_id = $session->getParam('USER_AUTH_ID');
-        
-        //TODO: usunąć ten komentarz
-        //Tutaj trzeba by sprawdzać czy rzeczywiście categoria należy do użytkownika, ale można to zlać i dopisać do przyszłych tasków
-
-
         $sql = 'INSERT INTO "Cyclic" ("description", "value", "category", "when", "from", "to")
             VALUES (:description, :value, :category, :when, :from, :to)';
         
@@ -93,7 +88,6 @@ class Cyclic extends Resource
 
         $dbs = $db->prepare($sql);
         $dbs->bindValue(":category", $category_id, PDO::PARAM_INT);
-        // Podobno dla parametru float używamy PARAM_STR
         $dbs->bindValue(":value", implode('.', explode(',', $value)), PDO::PARAM_STR);
         $dbs->bindValue(":description", $description, PDO::PARAM_STR);
         $dbs->bindValue(":when", $when, PDO::PARAM_STR);
@@ -107,7 +101,7 @@ class Cyclic extends Resource
         }
         else {
             $result['success'] = false;
-            $result['msg'] = "Problem z zapisaniem rachunku cyklicznego do bazy danych";
+            $result['msg'] = "Problem with saving cyclic to database";
         }
         
         return new Response(200, $result);
@@ -134,7 +128,7 @@ class Cyclic extends Resource
 
         if (!$id_cyclic) {
             $result['success'] = false;
-            $result['msg'] = "Brak id rachunku cyklicznego, zgubiłeś, ty niedobry!";
+            $result['msg'] = "You lost cyclic id, you bastard";
             return new Response(200, $result);
         }
         
@@ -160,7 +154,7 @@ class Cyclic extends Resource
         }
         else {
             $result['success'] = false;
-            $result['msg'] = "Problem z zapisaniem zmian w rachunku cyklicznym do bazy danych, sprawdź czy masz dobrą kategorię.";
+            $result['msg'] = "Problem with write cyclic to database, look at category.";
         }
         
         return new Response(200, $result);
@@ -181,7 +175,7 @@ class Cyclic extends Resource
         
         if (!$id_cyclic) {
             $result['success'] = false;
-            $result['msg'] = "Brak id rachunku cyklicznego";
+            $result['msg'] = "You lost cyclic id";
             return new Response(200, $result);
         }
         
@@ -200,7 +194,7 @@ class Cyclic extends Resource
         }
         else {
             $result['success'] = false;
-            $result['msg'] = "Problem z usunięciem rachunku";
+            $result['msg'] = "I can delete cyclic from database";
         }
         
         return new Response(200, $result);

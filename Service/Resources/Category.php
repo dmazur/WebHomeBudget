@@ -52,7 +52,7 @@ class Category extends Resource
         }
         else {
             $result['success'] = false;
-            $result['msg'] = "Problem z odczytem kategorii z bazy danych";
+            $result['msg'] = "Problem with reading category from database";
         }
         
         return new Response(200, $result);
@@ -89,7 +89,7 @@ class Category extends Resource
         }
         else {
             $result['success'] = false;
-            $result['msg'] = "Problem z zapisaniem kategorii do bazy danych";
+            $result['msg'] = "Problem with writing category to database";
         }
         
         return new Response(200, $result);
@@ -111,7 +111,7 @@ class Category extends Resource
         
         if (!$id_category) {
             $result['success'] = false;
-            $result['msg'] = "Brak id kategorii";
+            $result['msg'] = "You lost category id";
             return new Response(200, $result);
         }
         
@@ -133,7 +133,7 @@ class Category extends Resource
         }
         else {
             $result['success'] = false;
-            $result['msg'] = "Problem z zapisaniem kategorii do bazy danych";
+            $result['msg'] = "Problem while saving category to database";
         }
         
         return new Response(200, $result);
@@ -154,7 +154,7 @@ class Category extends Resource
         
         if (!$id_category) {
             $result['success'] = false;
-            $result['msg'] = "Brak id kategorii";
+            $result['msg'] = "You lost category id";
             return new Response(200, $result);
         }
         
@@ -173,7 +173,7 @@ class Category extends Resource
         }
         else {
             $result['success'] = false;
-            $result['msg'] = "Problem z zapisaniem kategorii do bazy danych";
+            $result['msg'] = "Problem with write category to database";
         }
         
         return new Response(200, $result);

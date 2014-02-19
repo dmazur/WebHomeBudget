@@ -2,7 +2,7 @@ Ext.define('NB.view.category.Edit', {
     extend: 'Ext.window.Window',
     alias: 'widget.categoryedit',
 
-    title: 'Edycja kategorii',
+    title: 'Category edit',
     layout: 'fit',
     autoShow: true,
     width: 400,
@@ -27,11 +27,11 @@ Ext.define('NB.view.category.Edit', {
                     allowBlank: false,
                     xtype: 'textfield',
                     name : 'name',
-                    fieldLabel: 'Nazwa'
+                    fieldLabel: 'Name'
                 },
                 {
                     xtype: 'label',
-                    text: 'Kolor:'
+                    text: 'Color:'
                 },
                 {
                     xtype: 'colorpicker',
@@ -59,12 +59,12 @@ Ext.define('NB.view.category.Edit', {
 
         this.buttons = [
             {
-                text: 'Zapisz',
+                text: 'Save',
                 action: 'save',
                 icon: '../Images/Icons/disk.png'
             },
             {
-                text: 'Anuluj',
+                text: 'Cancel',
                 scope: this,
                 handler: this.close,
                 icon: '../Images/Icons/cancel.png'

@@ -3,7 +3,7 @@ Ext.define('NB.view.bill.List' ,{
     alias: 'widget.billlist',
     id: 'billlistgrid',
 
-    title: 'Rachunki',
+    title: 'Bills',
     
     store: 'Bill',
 
@@ -12,11 +12,11 @@ Ext.define('NB.view.bill.List' ,{
             {dataIndex: 'category', width: 5, 
                 renderer: Ext.ux.StoreColorRenderer(Ext.getStore('Category'), 'id_category', 'color')
             },
-            {header: 'Opis',  dataIndex: 'description',  flex: 1},
-            {header: 'Wartość',  dataIndex: 'value',  flex: 1, 
+            {header: 'Description',  dataIndex: 'description',  flex: 1},
+            {header: 'Value',  dataIndex: 'value',  flex: 1, 
                 renderer: function (val) {return Ext.util.Format.currency(val);}
             },
-            {header: 'Kategoria',  dataIndex: 'category',  flex: 1, 
+            {header: 'Category',  dataIndex: 'category',  flex: 1, 
                 renderer: Ext.ux.StoreRenderer(Ext.getStore('Category'), 'id_category', 'name')
             },
             {header: 'Data', dataIndex: 'when', flex: 1, renderer: Ext.util.Format.dateRenderer('Y-m-d')}
@@ -29,17 +29,17 @@ Ext.define('NB.view.bill.List' ,{
     
     tbar: [
         {
-            text: 'Dodaj',
+            text: 'Add',
             action: 'add',
             icon: '../Images/Icons/tag_blue_add.png'
         },
         {
-            text: 'Edytuj',
+            text: 'Edit',
             action: 'edit',
             icon: '../Images/Icons/tag_blue_edit.png'
         },
         {
-            text: 'Usuń',
+            text: 'Delete',
             action: 'del',
             icon: '../Images/Icons/tag_blue_delete.png'
         }

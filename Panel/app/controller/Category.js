@@ -36,7 +36,7 @@ Ext.define('NB.controller.Category', {
     
     editCategoryGrid: function(grid, record) {
         var view = Ext.widget('categoryedit');
-        view.setTitle('Edytuj kategorię');
+        view.setTitle('Edit category');
         view.method = 'post';
         view.down('form').loadRecord(record);
     },
@@ -45,11 +45,11 @@ Ext.define('NB.controller.Category', {
         var grid = Ext.getCmp('categorylistgrid');
         var record = grid.getSelectionModel().getSelection()[0];
         if (!record) {
-            Ext.Msg.alert('Błąd', 'Zaznacz najpierw kategorię do edycji');
+            Ext.Msg.alert('Error', 'Choose category first');
             return;
         }
         var view = Ext.widget('categoryedit');
-        view.setTitle('Edytuj kategorię');
+        view.setTitle('Edit category');
         view.method = 'post';
         view.down('form').loadRecord(record);
     },
@@ -59,10 +59,10 @@ Ext.define('NB.controller.Category', {
         var record = grid.getSelectionModel().getSelection()[0];
         var store = this.getStore('Category');
         if (!record) {
-            Ext.Msg.alert('Błąd', 'Zaznacz najpierw kategorię do usunięcia');
+            Ext.Msg.alert('Error', 'Choose first category to delete');
             return;
         }
-        Ext.Msg.confirm('Pytanie', 'Czy na pewno chcesz usunąć tą kategorię?', function(button) {
+        Ext.Msg.confirm('Question', 'Are you sure?', function(button) {
             if (button === 'yes') {
                 var id = record.get('id_category');
                 Ext.Ajax.request({
@@ -74,20 +74,20 @@ Ext.define('NB.controller.Category', {
                     success: function(response) {
                         var resp = Ext.JSON.decode(response.responseText, true);
                         if (!resp.success) {
-                            Ext.Msg.alert('Błąd', resp.msg);
+                            Ext.Msg.alert('Error', resp.msg);
                             return;
                         }
                         store.load();
-                        var com = 'Poprawnie usunięto kategorię.'
-                        Ext.ux.Toast.msg('Komunikat', com);
+                        var com = 'Category deleted successfully.'
+                        Ext.ux.Toast.msg('Message', com);
                     },
                     failure: function(response) {
                         var resp = Ext.JSON.decode(response.responseText, true);
                         if (!resp) {
-                            Ext.Msg.alert('Błąd', "Brak odpowiedzi z serwera!");
+                            Ext.Msg.alert('Error', "No response from server!");
                             return;
                         }
-                        Ext.Msg.alert('Błąd', resp.msg);
+                        Ext.Msg.alert('Error', resp.msg);
                         return;
                     }
                 })
@@ -101,7 +101,7 @@ Ext.define('NB.controller.Category', {
     addCategory: function(button) {
         var view = Ext.widget('categoryedit');
         view.method = 'put';
-        view.setTitle('Dodaj kategorię');
+        view.setTitle('Add category');
         view.show();
     },
     
@@ -116,16 +116,16 @@ Ext.define('NB.controller.Category', {
                 success: function(form, action) {
                     button.up('window').close();
                     store.load();
-                    var com = 'Poprawnie '+((method === 'put')?'dodano':'zedytowano')+' kategorię.'
-                    Ext.ux.Toast.msg('Komunikat', com);
+                    var com = 'Successfully '+((method === 'put')?'added':'edited')+' category.'
+                    Ext.ux.Toast.msg('Message', com);
                 },
                 failure: function(form, action) {
                     var resp = Ext.JSON.decode(action.response.responseText, true);
                     if (!resp) {
-                        Ext.Msg.alert('Błąd', "Brak odpowiedzi z serwera!");
+                        Ext.Msg.alert('Error', "No response from server!");
                         return;
                     }
-                    Ext.Msg.alert('Błąd', resp.msg);
+                    Ext.Msg.alert('Error', resp.msg);
                     return;
                 }
             })

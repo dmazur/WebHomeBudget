@@ -2,7 +2,7 @@ Ext.define('NB.view.user.Options', {
     extend: 'Ext.window.Window',
     alias: 'widget.useroptions',
 
-    title: 'Opcje użytkownika',
+    title: 'User Options',
     layout: 'fit',
     autoShow: true,
     modal: true,
@@ -26,7 +26,7 @@ Ext.define('NB.view.user.Options', {
                         maxLength: 255,
                         maskRe: /^[0-9a-z_.]+$/i,
                         regex: /^[0-9a-z_.]+$/i,
-                        regexText: 'Login może składać się z liter, cyfr i znaków kropki oraz podkreślenia',
+                        regexText: 'Login can be only alphadigits, dots or underscore',
                         allowBlank: false
                     },
                     {
@@ -41,12 +41,12 @@ Ext.define('NB.view.user.Options', {
 
         this.buttons = [
             {
-                text: 'Zapisz',
+                text: 'Save',
                 action: 'save',
                 icons: 'Images/Icons/disk.png'
             },
             {
-                text: 'Anuluj',
+                text: 'Cancel',
                 scope: this,
                 handler: this.close,
                 icon: '../Images/Icons/cancel.png'

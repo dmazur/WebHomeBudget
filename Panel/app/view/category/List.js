@@ -3,14 +3,14 @@ Ext.define('NB.view.category.List' ,{
     alias: 'widget.categorylist',
     id: 'categorylistgrid',
 
-    title: 'Kategorie',
+    title: 'Category',
     
     store: 'Category',
 
     initComponent: function() {
         this.columns = [
             {dataIndex: 'color', width: 5, renderer: Ext.ux.RendererColor},
-            {header: 'Nazwa',  dataIndex: 'name',  flex: 1}
+            {header: 'Name',  dataIndex: 'name',  flex: 1}
         ];
         
         this.method = 'put';
@@ -20,17 +20,17 @@ Ext.define('NB.view.category.List' ,{
     
     tbar: [
         {
-            text: 'Dodaj',
+            text: 'Add',
             action: 'add',
             icon: '../Images/Icons/tag_blue_add.png'
         },
         {
-            text: 'Edytuj',
+            text: 'Edit',
             action: 'edit',
             icon: '../Images/Icons/tag_blue_edit.png'
         },
         {
-            text: 'Usuń',
+            text: 'Delete',
             action: 'del',
             icon: '../Images/Icons/tag_blue_delete.png'
         }

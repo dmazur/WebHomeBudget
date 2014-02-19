@@ -36,7 +36,7 @@ Ext.define('NB.controller.Cyclic', {
 
     editCyclicGrid: function(grid, record) {
         var view = Ext.widget('cyclicedit');
-        view.setTitle('Edytuj rachunek cykliczny');
+        view.setTitle('Edit cyclic');
         view.method = 'post';
         view.down('form').loadRecord(record);
     },
@@ -45,11 +45,11 @@ Ext.define('NB.controller.Cyclic', {
         var grid = Ext.getCmp('cycliclistgrid');
         var record = grid.getSelectionModel().getSelection()[0];
         if (!record) {
-            Ext.Msg.alert('Błąd', 'Zaznacz najpierw rachunek cykliczny do edycji');
+            Ext.Msg.alert('Error', 'Choose cyclic to edit first!');
             return;
         }
         var view = Ext.widget('cyclicedit');
-        view.setTitle('Edytuj rachunek cykliczny');
+        view.setTitle('Edit cyclic');
         view.method = 'post';
         view.down('form').loadRecord(record);
     },
@@ -59,10 +59,10 @@ Ext.define('NB.controller.Cyclic', {
         var record = grid.getSelectionModel().getSelection()[0];
         var store = this.getStore('Cyclic');
         if (!record) {
-            Ext.Msg.alert('Błąd', 'Zaznacz najpierw rachunek cykliczny do usunięcia');
+            Ext.Msg.alert('Error', 'Choose cyclic to delete first!');
             return;
         }
-        Ext.Msg.confirm('Pytanie', 'Czy na pewno chcesz usunąć ten rachunek cykliczny?', function(button) {
+        Ext.Msg.confirm('Error', 'Are you sure?', function(button) {
             if (button === 'yes') {
                 var id = record.get('id_cyclic');
                 Ext.Ajax.request({
@@ -74,20 +74,20 @@ Ext.define('NB.controller.Cyclic', {
                     success: function(response) {
                         var resp = Ext.JSON.decode(response.responseText, true);
                         if (!resp.success) {
-                            Ext.Msg.alert('Błąd', resp.msg);
+                            Ext.Msg.alert('Error', resp.msg);
                             return;
                         }
                         store.load();
-                        var com = 'Poprawnie usunięto rachunek cykliczny, Yea!'
-                        Ext.ux.Toast.msg('Komunikat', com);
+                        var com = 'Successfully delete cyclic, Yea!'
+                        Ext.ux.Toast.msg('Message', com);
                     },
                     failure: function(response) {
                         var resp = Ext.JSON.decode(response.responseText, true);
                         if (!resp) {
-                            Ext.Msg.alert('Błąd', "Brak odpowiedzi z serwera! :(");
+                            Ext.Msg.alert('Error', "No response from server! :(");
                             return;
                         }
-                        Ext.Msg.alert('Błąd', resp.msg);
+                        Ext.Msg.alert('Error', resp.msg);
                         return;
                     }
                 })
@@ -101,7 +101,7 @@ Ext.define('NB.controller.Cyclic', {
     addCyclic: function(button) {
         var view = Ext.widget('cyclicedit');
         view.method = 'put';
-        view.setTitle('Dodaj rachunek cykliczny');
+        view.setTitle('Add cyclic');
         view.show();
     },
     
@@ -116,16 +116,16 @@ Ext.define('NB.controller.Cyclic', {
                 success: function(form, action) {
                     button.up('window').close();
                     store.load();
-                    var com = 'Poprawnie '+((method === 'put')?'dodano':'zedytowano')+' rachunek cykliczny.'
-                    Ext.ux.Toast.msg('Komunikat', com);
+                    var com = 'Successfully '+((method === 'put')?'added':'edited')+' cyclic.'
+                    Ext.ux.Toast.msg('Message', com);
                 },
                 failure: function(form, action) {
                     var resp = Ext.JSON.decode(action.response.responseText, true);
                     if (!resp) {
-                        Ext.Msg.alert('Błąd', "Brak odpowiedzi z serwera!");
+                        Ext.Msg.alert('Error', "No response from server!");
                         return;
                     }
-                    Ext.Msg.alert('Błąd', resp.msg);
+                    Ext.Msg.alert('Error', resp.msg);
                     return;
                 }
             })

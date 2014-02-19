@@ -4,7 +4,7 @@ Ext.define('NB.view.stats.Main' ,{
     alias: 'widget.statsmain',
     id: 'statsmainpanel',
 
-    title: 'Statystyki',
+    title: 'Statistics',
 
     initComponent: function() {
         this.callParent(arguments);
@@ -52,7 +52,7 @@ Ext.define('NB.view.stats.Main' ,{
                     allowBlank: false,
                     xtype: 'combo',
                     name : 'category',
-                    fieldLabel: 'Kategoria',
+                    fieldLabel: 'Category',
                     store: 'Category',
                     queryMode:'local',
                     valueField: 'id_category',
@@ -131,7 +131,7 @@ Ext.define('NB.view.stats.Main' ,{
                     type: 'Category',
                     position: 'bottom',
                     fields: ['month'],
-                    title: 'Miesiące'
+                    title: 'Mounts'
                 }
             ],
             series: [

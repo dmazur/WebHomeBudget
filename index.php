@@ -14,7 +14,7 @@ if (isset($_SESSION['USER_AUTH_LOGIN'])) {
 <title>webhomebudget: login</title>
     <link rel="stylesheet" type="text/css" href="Libs/ExtJS4.1.1a/resources/css/ext-all-gray.css">
     <script type="text/javascript" src="Libs/ExtJS4.1.1a/bootstrap.js"></script>
-    <script type="text/javascript" src="Libs/ExtJS4.1.1a/locale/ext-lang-pl.js"></script>
+    <script type="text/javascript" src="Libs/ExtJS4.1.1a/locale/ext-lang-en.js"></script>
 </head>
 
 <body id="login_body">
@@ -25,7 +25,7 @@ if (isset($_SESSION['USER_AUTH_LOGIN'])) {
         Ext.onReady(function() {
             Ext.create('Ext.Panel', {
                 layout: 'fit',
-                title: 'Logowanie',
+                title: 'Log In',
                 renderTo: Ext.getBody(),
                 items: [
                     {
@@ -43,12 +43,12 @@ if (isset($_SESSION['USER_AUTH_LOGIN'])) {
                                 maxLength: 255,
                                 maskRe: /^[0-9a-z_.]+$/i,
                                 regex: /^[0-9a-z_.]+$/i,
-                                regexText: 'Login może składać się z liter, cyfr i znaków kropki oraz podkreślenia',
+                                regexText: 'Login can be only alphanumercal digits, dots and underscore',
                                 allowBlank: false,
                                 inputWidth: 200
                             },
                             {
-                                fieldLabel: 'Hasło',
+                                fieldLabel: 'Password',
                                 name: 'pass',
                                 minLength: 6,
                                 allowBlank: false,
@@ -70,7 +70,7 @@ if (isset($_SESSION['USER_AUTH_LOGIN'])) {
                         bbar: [
                             {
                                 xtype: 'button',
-                                text: 'Zaloguj',
+                                text: 'Login',
                                 id: 'login-button',
                                 handler: function() {
                                     if (Ext.getCmp('login_form').getForm().isValid()) {
@@ -86,12 +86,12 @@ if (isset($_SESSION['USER_AUTH_LOGIN'])) {
                                             success: function(response) {
                                                 var resp = Ext.JSON.decode(response.responseText, true);
                                                 if (!resp) {
-                                                    Ext.Msg.alert('Błąd', "Brak odpowiedzi z serwera!");
+                                                    Ext.Msg.alert('Error', "No response from server!");
                                                     return;
                                                 }
                                                 if (resp.success == false)
                                                 {
-                                                    Ext.Msg.alert('Błąd', "Logowanie nie powiodło się");
+                                                    Ext.Msg.alert('Error', "Connot log in");
                                                     return;
                                                 }
                                                 location.href = 'Panel';
@@ -102,11 +102,11 @@ if (isset($_SESSION['USER_AUTH_LOGIN'])) {
                             },
                             {
                                 xtype: 'button',
-                                text: 'Rejestracja użytkownika',
+                                text: 'User Registration',
                                 handler: function() {
                                     Ext.create('Ext.window.Window', {
                                         layout: 'fit',
-                                        title: 'Rejestracja użytkownika',
+                                        title: 'User Registration',
                                         id: 'new_user_window',
                                         items: [{
                                             xtype: 'form',
@@ -121,12 +121,12 @@ if (isset($_SESSION['USER_AUTH_LOGIN'])) {
                                                     maxLength: 255,
                                                     maskRe: /^[0-9a-z_.]+$/i,
                                                     regex: /^[0-9a-z_.]+$/i,
-                                                    regexText: 'Login może składać się z liter, cyfr i znaków kropki oraz podkreślenia',
+                                                    regexText: 'Login can be only alphanumercal digits, dots and underscore',
                                                     allowBlank: false,
                                                     inputWidth: 200
                                                 },
                                                 {
-                                                    fieldLabel: 'Hasło',
+                                                    fieldLabel: 'Password',
                                                     xtype: 'textfield',
                                                     name: 'pass',
                                                     minLength: 6,
@@ -135,7 +135,7 @@ if (isset($_SESSION['USER_AUTH_LOGIN'])) {
                                                     inputWidth: 200
                                                 },
                                                 {
-                                                    fieldLabel: 'Powtórz hasło',
+                                                    fieldLabel: 'Password Confirmation',
                                                     xtype: 'textfield',
                                                     name: 'pass2',
                                                     minLength: 6,
@@ -164,7 +164,7 @@ if (isset($_SESSION['USER_AUTH_LOGIN'])) {
                                             bbar: [
                                                 {
                                                     xtype: 'button',
-                                                    text: 'Utwórz konto',
+                                                    text: 'Create Account',
                                                     id: "register-button",
                                                     handler: function() {
                                                         var form = Ext.getCmp('new_user_form');
@@ -173,7 +173,7 @@ if (isset($_SESSION['USER_AUTH_LOGIN'])) {
                                                             var fields = form.getForm().getFields();
                                                             var fieldIndex = fields.findIndex('name', 'pass2');
                                                             var invalidField = fields.getAt(fieldIndex);
-                                                            invalidField.markInvalid("Podane hasła się nie zgadzają");
+                                                            invalidField.markInvalid("Passwords don't match");
                                                             return;
                                                         }
                                                         if(form.getForm().isValid()) {
@@ -186,24 +186,24 @@ if (isset($_SESSION['USER_AUTH_LOGIN'])) {
                                                                 success: function(form, action) {
                                                                     var resp = Ext.JSON.decode(action.response.responseText, true);
                                                                     if (!resp) {
-                                                                        Ext.Msg.alert('Błąd', "Brak odpowiedzi z serwera!");
+                                                                        Ext.Msg.alert('Error', "No response from server!");
                                                                         return;
                                                                     }
                                                                     if (resp.success == false)
                                                                     {
-                                                                        Ext.Msg.alert('Błąd', resp.msg);
+                                                                        Ext.Msg.alert('Error', resp.msg);
                                                                         return;
                                                                     }
-                                                                    Ext.Msg.alert('Komunikat', "Konto zostało utworzone. Teraz możesz się zalogować.");
+                                                                    Ext.Msg.alert('Message', "Account created, you can now log in");
                                                                     Ext.getCmp('new_user_window').close();
                                                                 },
                                                                 failure: function(form, action) {
                                                                     var resp = Ext.JSON.decode(action.response.responseText, true);
                                                                     if (!resp) {
-                                                                        Ext.Msg.alert('Błąd', "Brak odpowiedzi z serwera!");
+                                                                        Ext.Msg.alert('Error', "No response from server!");
                                                                         return;
                                                                     }
-                                                                    Ext.Msg.alert('Błąd', resp.msg);
+                                                                    Ext.Msg.alert('Error', resp.msg);
                                                                     return;
                                                                 }
                                                             })

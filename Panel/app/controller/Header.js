@@ -53,7 +53,7 @@ Ext.define('NB.controller.Header', {
             success: function(response) {
                 var resp = Ext.JSON.decode(response.responseText, true);
                 if (!resp) {
-                    Ext.Msg.alert('Błąd', "Brak odpowiedzi z serwera!");
+                    Ext.Msg.alert('Error', "No response from server!");
                     return;
                 }
                 location.href = '';
@@ -77,7 +77,7 @@ Ext.define('NB.controller.Header', {
                 success: function(form, action) {
                     button.up('window').close();
                     store.load();
-                    Ext.ux.Toast.msg('Komunikat', 'Poprawnie zmieniono opcje użytkownika.');
+                    Ext.ux.Toast.msg('Message', 'Successfully update your information.');
                 }
             })
         }
@@ -95,7 +95,7 @@ Ext.define('NB.controller.Header', {
             var fields = form.getForm().getFields();
             var fieldIndex = fields.findIndex('name', 'newPassword2');
             var invalidField = fields.getAt(fieldIndex);
-            invalidField.markInvalid("Podane hasła się nie zgadzają");
+            invalidField.markInvalid("Passwords don't match");
             return;
         }
         if(form.getForm().isValid()) {
@@ -109,24 +109,24 @@ Ext.define('NB.controller.Header', {
                 success: function(form, action) {
                     var resp = Ext.JSON.decode(action.response.responseText, true);
                     if (!resp) {
-                        Ext.Msg.alert('Błąd', "Brak odpowiedzi z serwera!");
+                        Ext.Msg.alert('Error', "No response from server!");
                         return;
                     }
                     if (resp.success == false)
                     {
-                        Ext.Msg.alert('Błąd', resp.msg);
+                        Ext.Msg.alert('Error', resp.msg);
                         return;
                     }
-                    Ext.ux.Toast.msg('Komunikat', 'Poprawnie zmieniono hasło użytkownika.');
+                    Ext.ux.Toast.msg('Message', 'Successfully changed password.');
                     button.up('window').close();
                 },
                 failure: function(form, action) {
                     var resp = Ext.JSON.decode(action.response.responseText, true);
                     if (!resp) {
-                        Ext.Msg.alert('Błąd', "Brak odpowiedzi z serwera!");
+                        Ext.Msg.alert('Error', "No response from server!");
                         return;
                     }
-                    Ext.Msg.alert('Błąd', resp.msg);
+                    Ext.Msg.alert('Error', resp.msg);
                     return;
                 }
             })

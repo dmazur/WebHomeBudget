@@ -36,7 +36,7 @@ Ext.define('NB.controller.Bill', {
 
     editBillGrid: function(grid, record) {
         var view = Ext.widget('billedit');
-        view.setTitle('Edytuj rachunek');
+        view.setTitle('Edit bill');
         view.method = 'post';
         view.down('form').loadRecord(record);
     },
@@ -45,7 +45,7 @@ Ext.define('NB.controller.Bill', {
         var grid = Ext.getCmp('billlistgrid');
         var record = grid.getSelectionModel().getSelection()[0];
         if (!record) {
-            Ext.Msg.alert('Błąd', 'Zaznacz najpierw rachunek do edycji');
+            Ext.Msg.alert('Error', 'Choose first bill to edit');
             return;
         }
         var view = Ext.widget('billedit');
@@ -59,10 +59,10 @@ Ext.define('NB.controller.Bill', {
         var record = grid.getSelectionModel().getSelection()[0];
         var store = this.getStore('Bill');
         if (!record) {
-            Ext.Msg.alert('Błąd', 'Zaznacz najpierw rachunek do usunięcia');
+            Ext.Msg.alert('Error', 'Choose first bill to delete');
             return;
         }
-        Ext.Msg.confirm('Pytanie', 'Czy na pewno chcesz usunąć ten rachunek?', function(button) {
+        Ext.Msg.confirm('Question', 'Are you sure?', function(button) {
             if (button === 'yes') {
                 var id = record.get('id_bill');
                 Ext.Ajax.request({
@@ -74,20 +74,20 @@ Ext.define('NB.controller.Bill', {
                     success: function(response) {
                         var resp = Ext.JSON.decode(response.responseText, true);
                         if (!resp.success) {
-                            Ext.Msg.alert('Błąd', resp.msg);
+                            Ext.Msg.alert('Error', resp.msg);
                             return;
                         }
                         store.load();
-                        var com = 'Poprawnie usunięto rachunek.'
+                        var com = 'Bill deleted successfully.'
                         Ext.ux.Toast.msg('Komunikat', com);
                     },
                     failure: function(response) {
                         var resp = Ext.JSON.decode(response.responseText, true);
                         if (!resp) {
-                            Ext.Msg.alert('Błąd', "Brak odpowiedzi z serwera!");
+                            Ext.Msg.alert('Error', "No response from server!");
                             return;
                         }
-                        Ext.Msg.alert('Błąd', resp.msg);
+                        Ext.Msg.alert('Error', resp.msg);
                         return;
                     }
                 })
@@ -101,7 +101,7 @@ Ext.define('NB.controller.Bill', {
     addBill: function(button) {
         var view = Ext.widget('billedit');
         view.method = 'put';
-        view.setTitle('Dodaj rachunek');
+        view.setTitle('Add bill');
         view.show();
     },
     
@@ -116,16 +116,16 @@ Ext.define('NB.controller.Bill', {
                 success: function(form, action) {
                     button.up('window').close();
                     store.load();
-                    var com = 'Poprawnie '+((method === 'put')?'dodano':'zedytowano')+' rachunek.'
-                    Ext.ux.Toast.msg('Komunikat', com);
+                    var com = 'Successfully '+((method === 'put')?'added':'edited')+' bill.'
+                    Ext.ux.Toast.msg('Message', com);
                 },
                 failure: function(form, action) {
                     var resp = Ext.JSON.decode(action.response.responseText, true);
                     if (!resp) {
-                        Ext.Msg.alert('Błąd', "Brak odpowiedzi z serwera!");
+                        Ext.Msg.alert('Error', "No response from server!");
                         return;
                     }
-                    Ext.Msg.alert('Błąd', resp.msg);
+                    Ext.Msg.alert('Error', resp.msg);
                     return;
                 }
             })

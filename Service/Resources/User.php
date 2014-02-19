@@ -141,14 +141,14 @@ class User extends Resource
         
         if ($dbs->rowCount() < 1) {
             $result = Array();
-            $result['msg'] = "Błąd podczas pobierania danych użytkownika";
+            $result['msg'] = "Problem with fetch user data from database";
             $result['success'] = false;
             return new Response(200, $result);
         }
         
         if ($data['pass'] !== md5($old.'4de821b132e2c393f7c52bf6e41a4331')) {
             $result = Array();
-            $result['msg'] = "Złe poprzednie hasło";
+            $result['msg'] = "Old password is wrong";
             $result['success'] = false;
             return new Response(200, $result);
         }
@@ -164,7 +164,7 @@ class User extends Resource
         
         if ($dbs->rowCount() < 1) {
             $result = Array();
-            $result['msg'] = "Błąd podczas zmiany hasła użytkownika";
+            $result['msg'] = "Error while changing password";
             $result['success'] = false;
             return new Response(200, $result);
         }
@@ -269,7 +269,7 @@ class User extends Resource
         }
         else {
             $result['success'] = false;
-            $result['msg'] = "Problem z zarejestrowaniem nowego użytkownika!";
+            $result['msg'] = "Problem with register new user!";
         }
         
         return new Response(200, $result);
@@ -307,7 +307,7 @@ class User extends Resource
         }
         else {
             $result['success'] = false;
-            $result['msg'] = "Problem z edytowaniem użytkownika";
+            $result['msg'] = "Problem with edit user";
         }
             
         return new Response(200, $result);

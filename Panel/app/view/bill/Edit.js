@@ -27,7 +27,7 @@ Ext.define('NB.view.bill.Edit', {
                     allowBlank: false,
                     xtype: 'textfield',
                     name : 'description',
-                    fieldLabel: 'Opis'
+                    fieldLabel: 'Description'
                 },
                 {
                     labelWidth: 50,
@@ -39,14 +39,14 @@ Ext.define('NB.view.bill.Edit', {
                     decimalSeparator: Ext.util.Format.decimalSeparator,
                     minValue: 0,
                     name : 'value',
-                    fieldLabel: 'Wartość'
+                    fieldLabel: 'Value'
                 },
                 {
                     allowBlank: false,
                     xtype: 'combobox',
                     name : 'category',
                     model: 'NB.model.Category',
-                    fieldLabel: 'Kategoria',
+                    fieldLabel: 'Category',
                     store: 'Category',
                     queryMode:'local',
                     valueField: 'id_category',
@@ -63,12 +63,12 @@ Ext.define('NB.view.bill.Edit', {
 
         this.buttons = [
             {
-                text: 'Zapisz',
+                text: 'Save',
                 action: 'save',
                 icon: '../Images/Icons/disk.png'
             },
             {
-                text: 'Anuluj',
+                text: 'Cancel',
                 scope: this,
                 handler: this.close,
                 icon: '../Images/Icons/cancel.png'
