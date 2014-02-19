@@ -21,7 +21,7 @@ Ext.define('NB.view.stats.Main' ,{
                     store: 'Time',
                     displayField: 'number',
                     valueField: 'number',
-                    fieldLabel: 'Rok',
+                    fieldLabel: 'Year',
                     margin: 5,
                     labelWidth: 55,
                     id: 'stats_main_year_combo',
@@ -45,7 +45,7 @@ Ext.define('NB.view.stats.Main' ,{
                     queryMode: 'local',
                     displayField: 'name',
                     valueField: 'number',
-                    fieldLabel: 'Miesiąc',
+                    fieldLabel: 'Month',
                     labelWidth: 55,
                     margin: 5,
                     editable: false,
@@ -106,10 +106,10 @@ Ext.define('NB.view.stats.Main' ,{
                             store: 'stats.SumByTime',
                             id: 'stats_main_chart_line',
                             xtype: 'chart',
-                            title: 'Wszystkie wydatki w roku',
+                            title: 'All expenses in year',
                             items: [{
                                 type  : 'text',
-                                text  : 'Wszystkie wydatki w roku',
+                                text  : 'All expenses in year',
                                 font  : '14px Arial',
                                 width : 100,
                                 height: 30,
@@ -132,7 +132,7 @@ Ext.define('NB.view.stats.Main' ,{
                                     type: 'Category',
                                     position: 'bottom',
                                     fields: ['month'],
-                                    title: 'Miesiące'
+                                    title: 'Months'
                                 }
                             ],
                             series: [
@@ -222,12 +222,12 @@ Ext.define('NB.view.stats.Main' ,{
                                     type: 'Category',
                                     position: 'bottom',
                                     fields: ['month'],
-                                    title: 'Miesiące'
+                                    title: 'Months'
                                 }
                             ],
                             items: [{
                                 type  : 'text',
-                                text  : 'Wydatki wg kategorii',
+                                text  : 'Bills by category',
                                 font  : '14px Arial',
                                 width : 100,
                                 height: 30,
