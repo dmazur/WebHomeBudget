@@ -31,17 +31,17 @@ Ext.define('NB.view.bill.List' ,{
         {
             text: 'Dodaj',
             action: 'add',
-            icon: '../Images/Icons/tag_blue_add.png'
+            icon: '../Images/Icons/table_add.png'
         },
         {
             text: 'Edytuj',
             action: 'edit',
-            icon: '../Images/Icons/tag_blue_edit.png'
+            icon: '../Images/Icons/table_edit.png'
         },
         {
             text: 'Usuń',
             action: 'del',
-            icon: '../Images/Icons/tag_blue_delete.png'
+            icon: '../Images/Icons/table_delete.png'
         }
     ]
 });

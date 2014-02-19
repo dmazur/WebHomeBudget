@@ -76,18 +76,19 @@ Ext.application({
                     items: [
                         {
                             xtype: 'billlist',
-                            icon: '../Images/Icons/tag_blue.png'
+                            icon: '../Images/Icons/table.png'
                         },
                         {
                             xtype: 'cycliclist',
-                            icon: '../Images/Icons/tag_blue.png'
+                            icon: '../Images/Icons/clock.png'
                         },
                         {
                             xtype: 'categorylist',
                             icon: '../Images/Icons/tag_blue.png'
                         },
                         {
-                            xtype: 'statsmain'
+                            xtype: 'statsmain',
+                            icon: '../Images/Icons/chart_pie.png'
                         }
                     ]
                 }
