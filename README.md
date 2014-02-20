@@ -78,6 +78,17 @@ cat mods-enabled/userdir.conf
 ```
 ^Take a look that it add PUT and DELETE methods
 
+Cron and Cyclic
+============
+In order to create Bills from cyclic model we "for now" perform script
+it is in utils/cylic_generaion.php, before you set up cron, you must change paths from require_once to absolute paths!
+
+```
+crontab -e
+00 11 * * * php /home/_your_home_/public_html/utils/cyclic_generation.php
+```
+
+
 ## Contributing (always welcome :) )
 
 1. Fork it
